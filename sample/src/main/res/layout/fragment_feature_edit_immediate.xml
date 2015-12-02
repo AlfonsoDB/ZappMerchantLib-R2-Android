@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/feature_edit_layout_padding"
+            app:columnCount="2"
+            app:orientation="horizontal"
+            app:rowCount="10">
+
+            <TextView
+                android:gravity="center"
+                android:text="@string/feature_edit_amount_label"
+                android:textSize="@dimen/feature_edit_label_text_size"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/amount"
+                style="@style/EditableAttribute.Input"
+                android:hint="@string/feature_edit_amount_hint"
+                android:inputType="numberDecimal" />
+
+            <TextView
+                android:id="@+id/bill_reference_label"
+                android:gravity="center"
+                android:text="@string/feature_edit_reference_label"
+                android:textSize="@dimen/feature_edit_label_text_size"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/bill_reference"
+                style="@style/EditableAttribute.Input"
+                android:hint="@string/feature_edit_reference_hint"
+                android:inputType="text"
+                android:maxLength="28"/>
+
+            <TextView
+                android:id="@+id/email_label"
+                android:gravity="center"
+                android:text="@string/feature_edit_email_label"
+                android:textSize="@dimen/feature_edit_label_text_size"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/email"
+                style="@style/EditableAttribute.Input"
+                android:hint="@string/feature_edit_email_hint"
+                android:inputType="textEmailAddress"
+                android:maxLength="256"/>
+
+            <TextView
+                android:id="@+id/feature_edit_address_label"
+                android:gravity="center"
+                android:text="@string/feature_edit_address_label"
+                android:textSize="@dimen/feature_edit_label_text_size"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/address_line_1"
+                style="@style/AddressLineInput"
+                android:hint="@string/feature_edit_line1_hint" />
+
+            <EditText
+                android:id="@+id/address_line_2"
+                style="@style/AddressLineInput"
+                android:hint="@string/feature_edit_line2_hint"
+                app:layout_column="1" />
+
+            <EditText
+                android:id="@+id/address_line_3"
+                style="@style/AddressLineInput"
+                android:hint="@string/feature_edit_line3_hint"
+                app:layout_column="1" />
+
+            <EditText
+                android:id="@+id/address_line_4"
+                style="@style/AddressLineInput"
+                android:hint="@string/feature_edit_line4_hint"
+                app:layout_column="1" />
+
+            <EditText
+                android:id="@+id/address_line_5"
+                style="@style/AddressLineInput"
+                android:hint="@string/feature_edit_line5_hint"
+                app:layout_column="1" />
+
+            <EditText
+                android:id="@+id/address_line_6"
+                style="@style/AddressLineInput"
+                android:hint="@string/feature_edit_line6_hint"
+                app:layout_column="1" />
+
+            <TextView
+                android:id="@+id/feature_edit_post_code_label"
+                android:gravity="center"
+                android:text="@string/feature_edit_postcode_label"
+                android:textSize="@dimen/feature_edit_label_text_size"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/postcode"
+                style="@style/EditableAttribute.Input"
+                android:maxLength="15"
+                android:hint="@string/feature_edit_postcode_hint"/>
+
+            <TextView
+                android:id="@+id/feature_edit_country_code_label"
+                android:gravity="center"
+                android:text="@string/feature_edit_country_code_label"
+                android:textSize="@dimen/feature_edit_label_text_size"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/country_code"
+                style="@style/EditableAttribute.Input"
+                android:maxLength="3"
+                android:hint="@string/feature_edit_country_code_hint"/>
+
+
+        </android.support.v7.widget.GridLayout>
+    </ScrollView>
+</LinearLayout>

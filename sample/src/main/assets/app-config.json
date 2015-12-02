@@ -1,0 +1,14 @@
+{
+  "gateway": {
+    "env": [
+      {
+        "name": "Dev",
+        "domain": "54.194.189.234:14721/distributor-gateway-",
+        "version": "2.3.0"
+      }
+    ]
+  },
+  "app": {
+    "appUrlScheme": "merchantdemo2"
+  }
+}

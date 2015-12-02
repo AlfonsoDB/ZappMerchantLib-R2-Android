@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Applications palette colors. -->
+    <color name="material_color_primary">#FF6e00</color>
+    <color name="material_color_primary_dark">#CC5803</color>
+    <color name="material_color_primary_light">#FFCCBC</color>
+    <color name="material_color_accent">#607D8B</color>
+    <color name="material_text_color_primary">#000000</color>
+    <color name="material_text_color_secondary">#727272</color>
+    <color name="material_color_icons">#FFFFFF</color>
+    <color name="material_color_divider">#B6B6B6</color>
+
+    <color name="material_tab_background">@color/material_color_icons</color>
+    <color name="material_tab_indicator_color">@color/material_color_primary</color>
+    <color name="material_selected_text_color">@color/material_color_primary</color>
+    <color name="material_tab_text_color">@color/material_text_color_primary</color>
+
+    <color name="material_window_background">#e0e0e0</color>
+    <color name="fragment_feature_demo_divider_background">#c8c8ca</color>
+    <color name="feature_demo_background_color">#f2f2f2</color>
+
+    <!--Payment declined fragment-->
+    <color name="fragment_payment_declined_layout_background">#ffcd62</color>
+    <color name="fragment_payment_declined_additional_info_text_color">#ff6e00</color>
+</resources>

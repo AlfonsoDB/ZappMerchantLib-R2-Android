@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragment_payment_declined_layout_height"
+            android:background="@color/fragment_payment_declined_layout_background"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_payment_declined_text1"
+                android:textColor="@color/material_text_color_primary"
+                android:textSize="@dimen/fragment_payment_declined_text1_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fragment_payment_declined_text2"
+                android:textColor="@color/material_text_color_primary"
+                android:textSize="@dimen/fragment_payment_declined_text2_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/fragment_payment_declined_description_layout_horizontal_padding"
+            android:paddingRight="@dimen/fragment_payment_declined_description_layout_horizontal_padding">
+
+            <TextView
+                android:id="@+id/order_number_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fragment_payment_declined_order_number_label_margin_top"
+                android:text="@string/fragment_payment_declined_order_number_label_text"
+                android:textColor="@color/material_text_color_primary"
+                android:textSize="@dimen/fragment_payment_declined_order_number_label_text_size" />
+
+            <TextView
+                android:id="@+id/order_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/material_text_color_primary"
+                android:textSize="@dimen/fragment_payment_declined_order_number_text_size"
+                android:textStyle="bold"
+                tools:text="151020000064350011" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/order_date_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_payment_declined_order_date_label_text"
+                    android:textColor="@color/material_text_color_primary"
+                    android:textSize="@dimen/fragment_payment_declined_order_date_label_text_size" />
+
+                <TextView
+                    android:id="@+id/order_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/material_text_color_primary"
+                    android:textSize="@dimen/fragment_payment_declined_order_date_text_size"
+                    tools:text="28 Apr 2015 12:25:59" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fragment_payment_declined_order_total_layout_margin_top"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/order_total_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_payment_declined_order_total_label_text"
+                    android:textColor="@color/material_text_color_primary"
+                    android:textSize="@dimen/fragment_payment_declined_order_total_label_text_size" />
+
+                <TextView
+                    android:id="@+id/order_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/material_text_color_primary"
+                    android:textSize="@dimen/fragment_payment_declined_order_total_text_size"
+                    android:textStyle="bold"
+                    tools:text="£449.00" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/max_agreed_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/material_text_color_primary"
+                android:textSize="@dimen/fragment_payment_declined_max_agreed_amount_text_size"
+                tools:text="Merchant Demo 2 agreed max amount \n£500" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/additional_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="@dimen/fragment_payment_declined_additional_info_margin_bottom"
+                    android:background="?attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/icon_additional_info"
+                    android:gravity="center"
+                    android:text="@string/transaction_technical_details_text_link"
+                    android:textColor="@color/fragment_payment_declined_additional_info_text_color"
+                    android:textSize="@dimen/fragment_payment_declined_additional_info_text_size" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

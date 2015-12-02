@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+
+def versionNameStr = hasProperty('appVersionNameSuffix') ? '2.0.0-2.0.0.0-' + appVersionNameSuffix : (project.hasProperty('appVersionName') ? appVersionName : '2.0-poc')
+def versionCodeStr = project.hasProperty('appVersionCode') ? Integer.parseInt(appVersionCode) : 20
+
+def getKeyStoreFileValue() {
+    return project.hasProperty('keyStoreFile') ? keyStoreFile : '${System.properties["user.home"]}${File.separator}zapp-release-key.keystore'
+}
+
+def getKeyStorePasswordValue() {
+    return project.hasProperty('keyStorePassword') ? keyStorePassword : 'miklos.sagi'
+}
+
+def getReleaseKeyAliasValue() {
+    return project.hasProperty('releaseKeyAlias') ? releaseKeyAlias : 'release_key'
+}
+
+def getKeyAliasPasswordValue() {
+    return getKeyStorePasswordValue()
+}
+
+repositories {
+    mavenCentral()
+}
+
+android {
+    lintOptions {
+        abortOnError false
+    }
+
+    compileSdkVersion 23
+    buildToolsVersion '23.0.2'
+
+    defaultConfig {
+        applicationId 'uk.co.zapp.samplezappmerchantapp2'
+        minSdkVersion 9
+        targetSdkVersion 23
+        versionName versionNameStr
+        versionCode versionCodeStr
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(getKeyStoreFileValue())
+            storePassword getKeyStorePasswordValue()
+            keyAlias getReleaseKeyAliasValue()
+            keyPassword getKeyAliasPasswordValue()
+        }
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            applicationIdSuffix '.develop'
+        }
+        release {
+            minifyEnabled false
+            applicationIdSuffix '.release'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':zapp-merchant-library')
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+    compile 'com.squareup:seismic:1.0.2'
+    compile 'com.android.support:support-v4:23.1.1'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:recyclerview-v7:23.1.1'
+    compile 'com.android.support:cardview-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    compile 'com.android.support:gridlayout-v7:23.1.1'
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/card_container_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_item_deferred_background"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/feature_demo_list_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/feature_demo_list_item_horizontal_margin"
+        android:paddingLeft="@dimen/feature_demo_list_item_horizontal_margin"
+        android:paddingRight="@dimen/feature_demo_list_item_horizontal_margin"
+        style="@style/FeatureItemTextView"
+        tools:text="Feature demo title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/feature_demo_list_item_horizontal_margin"
+        android:background="?android:listDivider" />
+
+</LinearLayout>

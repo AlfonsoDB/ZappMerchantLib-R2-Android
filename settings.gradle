@@ -1,0 +1,2 @@
+include ':sample', ':zapp-merchant-library', ':zapp-core-library'
+project(':zapp-core-library').projectDir = new File('modules/zapp-core-library/zapp-core-library')

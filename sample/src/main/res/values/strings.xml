@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Merchant Demo 2</string>
+    <string name="app_scheme">merchantdemo2</string>
+
+    <string name="zapp_demo">Merchant Demo 2</string>
+    <string name="title_activity_main">Merchant Demo 2</string>
+
+    <string name="smb_title_your">Your\u0020</string>
+    <string name="smb_message_text">Awaiting Payment Confirmation</string>
+
+    <!--error msgs-->
+    <string name="exception_network_title">Network error.</string>
+    <string name="exception_payment_not_confirmed_msg">Payment not confirmed yet.</string>
+    <string name="exception_no_network_msg">Network connection not available. Please try to connect before using.</string>
+    <string name="exception_network_msg">A network error occurred. Please try again.</string>
+    <string name="exception_no_bank_app_msg">No bank app was found on your device. Try installing one and repeat the payment.</string>
+
+    <!-- Gateway selector -->
+    <string name="settings_choose_gateway_title">Choose gateway</string>
+    <string name="settings_gateway_updated">Gateway updated to %1$s</string>
+
+    <!-- Transitions -->
+    <string name="transition_container">sampleapp.transition.CONTAINER</string>
+    <string name="transition_title">sampleapp.transition.TITLE</string>
+    <string name="transition_description">sampleapp.transition.DESCRIPTION</string>
+
+    <!-- Feature edit. -->
+    <string name="app_bar_title_standard_payment">Standard Payment</string>
+    <string name="app_bar_title_pay_plus">PayPlus Payment</string>
+    <string name="feature_edit_amount_label">Amount</string>
+    <string name="feature_edit_amount_hint">Amount</string>
+    <string name="feature_edit_max_agreed_amount_hint">Maximum Agreed Amount</string>
+    <string name="feature_edit_reference_label">Bill reference</string>
+    <string name="feature_edit_reference_hint">Bill reference</string>
+    <string name="feature_edit_email_label">Email</string>
+    <string name="feature_edit_email_hint">Email</string>
+    <string name="feature_edit_address_label">Address</string>
+    <string name="feature_edit_line1_hint">Address Line 1</string>
+    <string name="feature_edit_line2_hint">Address Line 2</string>
+    <string name="feature_edit_line3_hint">Address Line 3</string>
+    <string name="feature_edit_line4_hint">Address Line 4</string>
+    <string name="feature_edit_line5_hint">Address Line 5</string>
+    <string name="feature_edit_line6_hint">Address Line 6</string>
+    <string name="feature_edit_line2_hint_deferred">Address Line 2 (optional)</string>
+    <string name="feature_edit_line3_hint_deferred">Address Line 3 (optional)</string>
+    <string name="feature_edit_line4_hint_deferred">Address Line 4 (optional)</string>
+    <string name="feature_edit_line5_hint_deferred">Address Line 5 (optional)</string>
+    <string name="feature_edit_line6_hint_deferred">Address Line 6 (optional)</string>
+    <string name="feature_edit_postcode_hint_deferred">Postcode (optional)</string>
+    <string name="feature_edit_postcode_label">Postcode</string>
+    <string name="feature_edit_country_code_label">Country code</string>
+    <string name="feature_edit_postcode_hint">Postcode</string>
+    <string name="feature_edit_country_code_hint">Country code</string>
+    <string name="feature_edit_delivery_address_hint">Delivery Address</string>
+    <string name="feature_edit_address_first_name">First Name</string>
+    <string name="feature_edit_last_name">Last Name</string>
+
+    <string name="save">SAVE</string>
+    <string name="feature_edit_error_dialog_title">Error</string>
+    <string name="feature_edit_error_dialog_positive_button">OK</string>
+    <string name="feature_edit_error_missing_country_code">Missing required field: Country code.</string>
+    <string name="feature_edit_error_missing_first_name">Missing required field: First Name.</string>
+    <string name="feature_edit_error_missing_last_name">Missing required field: Last Name.</string>
+
+    <!-- Error texts. -->
+    <string name="error_invalid_email">Invalid email format</string>
+    <string name="feature_edit_invalid_amount_value_error">The amount value can contain maximum 14 digits before the decimal point and 2 after.</string>
+    <string name="feature_edit_low_max_amount_error">Maximum agreed amount should be greater than or equal to amount.</string>
+    <string name="feature_edit_no_amount_value_error">Amount is a mandatory field.</string>
+
+    <!-- Feature edit options. -->
+    <string-array name="delivery_type_standard">
+        <item>Deliver to Address</item>
+        <item>Collect in Store</item>
+        <item>Digital Delivery</item>
+    </string-array>
+    <string-array name="delivery_type_pay_plus">
+        <item>Deliver to Address</item>
+        <item>Digital Delivery</item>
+    </string-array>
+    <string-array name="authorisation_type">
+        <item>None</item>
+        <item>Funds Check</item>
+        <item>Funds Guarantee</item>
+        <item>Later</item>
+    </string-array>
+
+    <string name="error_invalid_transaction_details">Couldn\'t retrieve transaction details.</string>
+
+    <!--Payment confirmation-->
+    <string name="transaction_details_not_available">N/A</string>
+    <string name="transaction_order_number"><![CDATA[Your order number is: <b>%1$s</b>]]></string>
+    <string name="transaction_confirmation_email_text"><![CDATA[<br /><br />You will receive an order confirmation email]]></string>
+    <string name="transaction_order_date"><![CDATA[<br /><br />Order date: %1$s]]></string>
+    <string name="transaction_order_total"><![CDATA[<br /><br />Order total: <b>%1$s</b>]]></string>
+    <string name="transaction_agreed_max_amount"><![CDATA[<br /><br />%1$s agreed max amount is: %2$s<br /><br />Your payment will be taken on delivery]]></string>
+    <string name="transaction_declined_agreed_max_amount"><![CDATA[%1$s agreed max amount <br /><b>%2$s</b>]]></string>
+    <string name="transaction_delivery_address_header"><![CDATA[<b>Shipping address</b>]]></string>
+    <string name="transaction_physical_address"><![CDATA[<br />%1$s]]></string>
+    <string name="transaction_technical_details_text_link">Additional Info</string>
+    <string name="transaction_details"><![CDATA[Transaction status: %1$s <br /><br />BRN: %2$s<br />APTID: %3$s<br /><br />Payment request type: %4$s<br />Payment type: %5$s<br />
+    Checkout type: %6$s<br />Delivery type: %7$s]]></string>
+    <string name="transaction_bill_details"><![CDATA[<br />Bill Reference: %1$s]]></string>
+    <string name="transaction_detail_delivery_address"><![CDATA[<br /><br />Deliver to Addressee:<br />First name: %1$s<br />Last name: %2$s<br />Email: %3$s<br />Phone: %4$s]]></string>
+    <string name="transaction_detail_invalid_delivery_address"><![CDATA[<br /><br />Delivery address has <b>no addressee</b>]]></string>
+    <string name="transaction_detail_digital_address"><![CDATA[<br /><br />Delivery address:<br />Line 1: %1$s<br />Line 2: %2$s<br />Line 3: %3$s<br />Line 4: %4$s<br />
+    Line 5: %5$s<br />Line 6: %6$s<br />Post code: %7$s<br />Country code: %8$s]]></string>
+    <string name="transaction_details_invalid_physical_delivery_address"><![CDATA[<br /><br />Payment authentication contains <b>no delivery address</b>]]></string>
+    <string name="transaction_details_invalid_digital_delivery_address"><![CDATA[<br /><br />Payment authentication has <b>no user</b>]]></string>
+    <string name="transaction_details_face_to_face__delivery_address"><![CDATA[<br /><br />Face to face payment has no delivery address information included in the transaction by design.]]></string>
+    <string name="transaction_details_unknown_delivery_type"><![CDATA[<br /><br /><b>Unknown delivery type:%1$s </b>]]></string>
+    <string name="transaction_details_deferred_payment_msg"><![CDATA[<br /><br />Your payment will be taken on delivery]]></string>
+    <string name="fragment_feature_demo_spinner_label_delivery_type">Delivery Type</string>
+    <string name="fragment_feature_demo_spinner_label_acr_type">Authorisation Type</string>
+    <string name="feature_edit_address_button_cancel">Cancel</string>
+    <string name="feature_edit_address_button_ok">OK</string>
+
+    <!--Feature Demo: Immediate Payment-->
+    <string name="feature_demo_immediate_label_delivery_address">Delivery Address</string>
+    <string name="feature_demo_immediate_bill_reference">Bill reference: %s</string>
+    <string name="feature_demo_immediate_label_email">Email</string>
+
+    <!--Payment declined fragment-->
+    <string name="fragment_payment_declined_text1">Payment Declined</string>
+    <string name="fragment_payment_declined_text2">Your payment has been declined</string>
+    <string name="fragment_payment_declined_order_number_label_text">Your order number is</string>
+    <string name="fragment_payment_declined_order_date_label_text">"Order date: "</string>
+    <string name="fragment_payment_declined_order_total_label_text">"Order total: "</string>
+</resources>

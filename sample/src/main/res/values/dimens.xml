@@ -1,0 +1,73 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="feature_demo_immediate_amount_padding">20dp</dimen>
+    <dimen name="feature_demo_immediate_info_margin_right">20dp</dimen>
+    <dimen name="feature_demo_immediate_amount_text_size">24sp</dimen>
+
+    <!-- Feature list screen -->
+    <dimen name="feature_demo_list_padding_bottom">@dimen/feature_demo_list_card_vertical_margin</dimen>
+    <dimen name="feature_demo_list_card_horizontal_margin">16dp</dimen>
+    <dimen name="feature_demo_list_card_vertical_margin">16dp</dimen>
+    <dimen name="feature_demo_list_card_elevation">2dp</dimen>
+    <dimen name="feature_demo_list_card_corner_radius">4dp</dimen>
+    <dimen name="feature_demo_list_item_horizontal_margin">16dp</dimen>
+    <dimen name="feature_demo_list_item_vertical_margin">16dp</dimen>
+    <dimen name="feature_demo_list_item_margin">16dp</dimen>
+    <dimen name="feature_demo_list_item_title_font_size">18sp</dimen>
+    <dimen name="feature_demo_list_item_description_font_size">14sp</dimen>
+
+    <!-- Feature details screen -->
+    <dimen name="payment_confirmed_image_height">70dp</dimen>
+    <dimen name="feature_details_card_margin">16dp</dimen>
+    <dimen name="feature_details_card_horizontal_margin">16dp</dimen>
+    <dimen name="feature_details_card_vertical_margin">16dp</dimen>
+    <dimen name="feature_details_list_card_vertical_margin_bottom">16dp</dimen>
+    <dimen name="feature_demo_title_margin">16dp</dimen>
+    <dimen name="feature_demo_title_font_size">18sp</dimen>
+    <dimen name="feature_demo_description_margin">16dp</dimen>
+    <dimen name="feature_demo_description_font_size">16sp</dimen>
+    <dimen name="feature_demo_immediate_details_margin_bottom">8dp</dimen>
+
+    <!-- SMB screen -->
+    <dimen name="smb_progress_indicator_width">33dp</dimen>
+    <dimen name="smb_progress_indicator_height">33dp</dimen>
+
+    <!-- Feature edit screen. -->
+    <dimen name="feature_edit_layout_padding">16dp</dimen>
+    <dimen name="feature_edit_label_text_size">14dp</dimen>
+
+    <dimen name="feature_edit_input_margin_left">16dp</dimen>
+    <dimen name="feature_edit_input_text_size">14dp</dimen>
+    <dimen name="feature_edit_input_layout_height">48dp</dimen>
+    <dimen name="feature_demo_fab_margin">16dp</dimen>
+    <dimen name="feature_demo_fab_elevation">6dp</dimen>
+    <dimen name="feature_demo_fab_border_width">0dp</dimen>
+    <dimen name="feature_demo_fab_pressed_translation_z">12dp</dimen>
+    <dimen name="feature_edit_user_name_margin_horizontal">8dp</dimen>
+    <dimen name="fragment_feature_demo_form_padding_horizontal">9dp</dimen>
+    <dimen name="fragment_feature_demo_form_padding_vertical">9dp</dimen>
+    <dimen name="fragment_feature_demo_spinner_label_margin_bottom">6dp</dimen>
+    <dimen name="fragment_feature_demo_spinner_label_text_size">12dp</dimen>
+    <dimen name="fragment_feature_demo_divider_height">1dp</dimen>
+    <dimen name="fragment_feature_demo_divider_margin_top">10dp</dimen>
+    <dimen name="fragment_feature_demo_divider_margin_bottom">13dp</dimen>
+    <dimen name="feature_edit_address_layout_padding">25dp</dimen>
+
+    <!--Payment declined fragment-->
+    <dimen name="fragment_payment_declined_layout_height">137dp</dimen>
+    <dimen name="fragment_payment_declined_text1_size">21dp</dimen>
+    <dimen name="fragment_payment_declined_text2_size">16dp</dimen>
+    <dimen name="fragment_payment_declined_description_layout_horizontal_padding">16dp</dimen>
+    <dimen name="fragment_payment_declined_order_number_label_margin_top">23dp</dimen>
+    <dimen name="fragment_payment_declined_order_number_label_text_size">18dp</dimen>
+    <dimen name="fragment_payment_declined_order_number_text_size">18dp</dimen>
+    <dimen name="fragment_payment_declined_order_date_label_text_size">18dp</dimen>
+    <dimen name="fragment_payment_declined_order_date_text_size">18dp</dimen>
+    <dimen name="fragment_payment_declined_order_total_layout_margin_top">50dp</dimen>
+    <dimen name="fragment_payment_declined_order_total_label_text_size">16dp</dimen>
+    <dimen name="fragment_payment_declined_order_total_text_size">30dp</dimen>
+    <dimen name="fragment_payment_declined_max_agreed_amount_text_size">16dp</dimen>
+    <dimen name="fragment_payment_declined_additional_info_margin_bottom">37dp</dimen>
+    <dimen name="fragment_payment_declined_additional_info_text_size">18dp</dimen>
+
+</resources>

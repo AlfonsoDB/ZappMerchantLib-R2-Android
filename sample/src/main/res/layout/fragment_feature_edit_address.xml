@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/app_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/feature_demo_background_color"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/feature_edit_address_layout_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/feature_edit_user_name_margin_horizontal"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/first_name"
+                        style="@style/Deferred.AddressLineInput"
+                        android:hint="@string/feature_edit_address_first_name" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/feature_edit_user_name_margin_horizontal"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/last_name"
+                        style="@style/Deferred.AddressLineInput"
+                        android:hint="@string/feature_edit_last_name" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <View
+                    style="@style/EditableAttribute.Divider"
+                    android:layout_width="0dp"
+                    android:layout_marginRight="@dimen/feature_edit_user_name_margin_horizontal"
+                    android:layout_weight="1" />
+
+                <View
+                    style="@style/EditableAttribute.Divider"
+                    android:layout_width="0dp"
+                    android:layout_marginLeft="@dimen/feature_edit_user_name_margin_horizontal"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/address_line_1"
+                    style="@style/Deferred.AddressLineInput"
+                    android:hint="@string/feature_edit_line1_hint" />
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                style="@style/EditableAttribute.Divider"
+                android:layout_width="match_parent" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/address_line_2"
+                    style="@style/Deferred.AddressLineInput"
+                    android:hint="@string/feature_edit_line2_hint_deferred" />
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                style="@style/EditableAttribute.Divider"
+                android:layout_width="match_parent" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/address_line_3"
+                    style="@style/Deferred.AddressLineInput"
+                    android:hint="@string/feature_edit_line3_hint_deferred" />
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                style="@style/EditableAttribute.Divider"
+                android:layout_width="match_parent" />
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/address_line_4"
+                    style="@style/Deferred.AddressLineInput"
+                    android:hint="@string/feature_edit_line4_hint_deferred"
+                    app:layout_column="1" />
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                style="@style/EditableAttribute.Divider"
+                android:layout_width="match_parent" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/address_line_5"
+                    style="@style/Deferred.AddressLineInput"
+                    android:hint="@string/feature_edit_line5_hint_deferred" />
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                style="@style/EditableAttribute.Divider"
+                android:layout_width="match_parent" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/address_line_6"
+                    style="@style/Deferred.AddressLineInput"
+                    android:hint="@string/feature_edit_line6_hint_deferred" />
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                style="@style/EditableAttribute.Divider"
+                android:layout_width="match_parent" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/postcode"
+                    style="@style/Deferred.Input"
+                    android:hint="@string/feature_edit_postcode_hint_deferred"
+                    android:maxLength="15" />
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                style="@style/EditableAttribute.Divider"
+                android:layout_width="match_parent" />
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/country_code"
+                    style="@style/Deferred.Input"
+                    android:hint="@string/feature_edit_country_code_hint"
+                    android:maxLength="3" />
+            </android.support.design.widget.TextInputLayout>
+
+            <View
+                style="@style/EditableAttribute.Divider"
+                android:layout_width="match_parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/cancel_btn"
+                    style="@style/EditCancelButton"
+                    android:text="@string/feature_edit_address_button_cancel" />
+
+                <Button
+                    android:id="@+id/ok_btn"
+                    style="@style/EditAddressButton"
+                    android:text="@string/feature_edit_address_button_ok" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+        Note: these colours are here just to demonstrate how to override the Pay by Bank app button and popup colours.
+    -->
+
+    <!-- Pay by Bank app button colour properties -->
+    <!--
+    <color name="pbba_button_border_color">#0000ff</color>
+    <color name="pbba_button_background_color">#9999ff</color>
+    <color name="pbba_button_foreground_color">#1919ff</color>
+    <color name="pbba_button_disabled_background_color">#809999ff</color>
+    <color name="pbba_symbol_icon_tint_color">#1919ff</color>
+    -->
+
+    <!-- Pay by Bank app popup colour properties -->
+    <!--
+    <color name="pbba_popup_screen_background_color">#D90000cc</color>
+    <color name="pbba_popup_border_color">@color/pbba_button_background_color</color>
+    <color name="pbba_popup_background_color">#e6e6ff</color>
+    <color name="pbba_popup_foreground_color">#00001a</color>
+    <color name="pbba_popup_foreground_color_10_percent_alpha">#1900001a</color>
+    <color name="pbba_popup_secondary_foreground_color">#9999ff</color>
+    <color name="pbba_popup_link_color">@color/pbba_popup_foreground_color</color>
+    -->
+
+    <!-- Pay by Bank app ecom popup properties (indicator opacities 30%, 50%, 75%, 100%) -->
+    <!--
+    <color name="pbba_popup_ecom_indicator_one_color">#4D3333ff</color>
+    <color name="pbba_popup_ecom_indicator_two_color">#803333ff</color>
+    <color name="pbba_popup_ecom_indicator_three_color">#bf3333ff</color>
+    <color name="pbba_popup_ecom_indicator_four_color">#ff3333ff</color>
+
+    <color name="pbba_popup_ecom_vertical_separator_color">@color/pbba_popup_foreground_color_10_percent_alpha</color>
+    -->
+
+    <!-- Pay by Bank app Code section -->
+    <!--
+    <color name="pbba_code_border_color">@color/pbba_popup_border_color</color>
+    <color name="pbba_code_separator_color">@color/pbba_popup_border_color</color>
+    <color name="pbba_code_background_color">@color/pbba_popup_background_color</color>
+    <color name="pbba_code_text_color">@color/pbba_popup_foreground_color</color>
+    -->
+
+</resources>

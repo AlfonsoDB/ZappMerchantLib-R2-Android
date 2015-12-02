@@ -1,0 +1,18 @@
+<manifest
+    package="com.zapp.library.merchant"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="false"
+        android:hardwareAccelerated="true"
+        tools:replace="android:allowBackup">
+
+        <activity
+            android:name=".ui.PBBAPopupActivity"
+            android:theme="@style/PBBAPopup.Screen"
+            android:exported="false"
+            android:launchMode="singleTop"/>
+    </application>
+
+</manifest>

@@ -1,0 +1,71 @@
+apply plugin: 'com.android.library'
+
+/*
+ * Gets the version name from the latest Git release tag
+ */
+def getVersionNameFromLatestReleaseTag = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'describe', '--tags'
+        standardOutput = stdout
+    }
+    version = stdout.toString().trim()
+    version = version.substring('release_'.length())
+    return version
+}
+
+/**
+ * Extracts version name from environment variables passed through command line by jenkins
+ */
+def getVersionNameFromSystemVariables = { ->
+    def property = System.getProperty('versionName')
+    version = property == null ? '1.0.0' : property
+    return version
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion '23.0.2'
+
+    defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 23
+        versionCode 1
+        versionName getVersionNameFromSystemVariables()
+        testInstrumentationRunner 'cucumber.api.android.CucumberInstrumentation'
+    }
+
+    buildTypes {
+        debug {
+            testCoverageEnabled true
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile project(':zapp-core-library')
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:support-v4:23.1.1'
+
+    androidTestCompile 'info.cukes:cucumber-junit:1.2.2'
+    androidTestCompile 'info.cukes:cucumber-java:1.2.2'
+    androidTestCompile 'info.cukes:cucumber-android:1.2.2'
+    androidTestCompile 'org.mockito:mockito-core:2.0.13-beta'
+    androidTestCompile 'com.google.dexmaker:dexmaker-mockito:1.2'
+}
