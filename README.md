@@ -87,7 +87,7 @@ The source code structure
 
 ###Add Pay by Bank App Button To View Layout
 Add the following to your layout resource:
-```sh
+```xml
     <com.zapp.library.merchant.view.PBBAButton
         android:id="@+id/pbba_button"
         android:layout_width="match_parent"
@@ -103,239 +103,225 @@ More examples are present in the Sample (Merchant Demo 2) Application source cod
 #####Immediate Payments
 **PayPlus Payment**
 
-```
-#!java
+```java
+try {
+    final CurrencyAmount amount = new CurrencyAmount(1000l, CurrencyAmount.POUNDS);
 
-    try {
-            final CurrencyAmount amount = new CurrencyAmount(1000l, CurrencyAmount.POUNDS);
+    final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ null, /*line4*/ null,
+    /*line5*/ null, /*line6*/ null, /* postCode */ null, Address.UK);
 
-            final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ null, /*line4*/ null,
-            /*line5*/ null, /*line6*/ null, /* postCode */ null, Address.UK);
+    //logoUrl is null because it is set in Zapp Core already
+    final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
+            Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
 
-            //logoUrl is null because it is set in Zapp Core already
-            final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
-                    Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
+    final Uri.Builder uriBuilder = new Uri.Builder();
+    final Uri merchantCallbackUri = uriBuilder
+            .scheme(getString(R.string.app_scheme))
+            .authority("merchant.domain.com")
+            .appendQueryParameter("param1", "value1")
+            .build();
 
-            final Uri.Builder uriBuilder = new Uri.Builder();
-            final Uri merchantCallbackUri = uriBuilder
-                    .scheme(getString(R.string.app_scheme))
-                    .authority("merchant.domain.com")
-                    .appendQueryParameter("param1", "value1")
-                    .build();
+    final PaymentRequestBuilder paymentRequestBuilder = new PaymentRequestBuilder();
+    paymentRequestBuilder
+            .withRtpType(RTPType.IMMEDIATE)
+            .withPaymentType(PaymentType.INSTANT_PAYMENT)
+            .withCheckoutType(CheckoutType.QUICK)
+            .withDeliveryType(DeliveryType.ADDRESS)
+            .withAmount(amount)
+            .withMerchant(merchant)
+            .withMerchantCallbackUrl(merchantCallbackUri.toString());
 
-            final PaymentRequestBuilder paymentRequestBuilder = new PaymentRequestBuilder();
-            paymentRequestBuilder
-                    .withRtpType(RTPType.IMMEDIATE)
-                    .withPaymentType(PaymentType.INSTANT_PAYMENT)
-                    .withCheckoutType(CheckoutType.QUICK)
-                    .withDeliveryType(DeliveryType.ADDRESS)
-                    .withAmount(amount)
-                    .withMerchant(merchant)
-                    .withMerchantCallbackUrl(merchantCallbackUri.toString());
+    final PaymentRequest paymentRequest = paymentRequestBuilder.build();
 
-            final PaymentRequest paymentRequest = paymentRequestBuilder.build();
-
-        } catch (Exception e) {
-            Log.e(TAG, "Failed to set up PayPlus Payment", e);
-        }
+    } catch (Exception e) {
+        Log.e(TAG, "Failed to set up PayPlus Payment", e);
+    }
 ```
 
 ####Paying a bill
 
+```java
+try {
+    final CurrencyAmount amount = new CurrencyAmount(1400l, CurrencyAmount.POUNDS);
+
+    final Date periodFrom = DATE_FORMATTER.parse("2015-08-01");
+    final Date periodTo = DATE_FORMATTER.parse("2015-08-30");
+    final BillDetails billDetails = new BillDetails("8500 222 66138", "Y6557802", periodFrom, periodTo);
+
+    final Address userAddress = new Address("10 Downing Street", /*line2*/ null, /*line3*/ "London", /*line4*/ null,
+    /*line5*/ null, /*line6*/ null, /*postCode*/ "SW1A 2AA", Address.UK);
+    final User user = new User("John", "Smith", /*middle name*/ null, /*title*/ null, /*email*/ null, /*phone*/ null);
+    final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ null, /*line4*/ null,
+    /*line5*/ null, /*line6*/ null, /*postCode*/ null, Address.UK);
+
+    //logoUrl is null because it is set in Zapp Core already
+    final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
+            Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
+
+    final Uri.Builder uriBuilder = new Uri.Builder();
+    final Uri merchantCallbackUri = uriBuilder
+            .scheme(getString(R.string.app_scheme))
+            .authority("merchant.domain.com")
+            .appendQueryParameter("param1", "value1")
+            .build();
+
+    final PaymentRequestBuilder paymentRequestBuilder = new PaymentRequestBuilder();
+    paymentRequestBuilder
+            .withRtpType(RTPType.IMMEDIATE)
+            .withPaymentType(PaymentType.BILL_PAY)
+            .withCheckoutType(CheckoutType.NORMAL)
+            .withDeliveryType(DeliveryType.ADDRESS)
+            .withAmount(amount)
+            .withAddress(userAddress)
+            .withUser(user)
+            .withMerchant(merchant)
+            .withBillDetails(billDetails)
+            .withMerchantCallbackUrl(merchantCallbackUri.toString());
+
+    final PaymentRequest paymentRequest = paymentRequestBuilder.build();
+
+    } catch (Exception e) {
+        Log.e(TAG, "Failed to set up Bill Payment", e);
+    }
 ```
-#!java
-
-    try {
-            final CurrencyAmount amount = new CurrencyAmount(1400l, CurrencyAmount.POUNDS);
-
-            final Date periodFrom = DATE_FORMATTER.parse("2015-08-01");
-            final Date periodTo = DATE_FORMATTER.parse("2015-08-30");
-            final BillDetails billDetails = new BillDetails("8500 222 66138", "Y6557802", periodFrom, periodTo);
-
-            final Address userAddress = new Address("10 Downing Street", /*line2*/ null, /*line3*/ "London", /*line4*/ null,
-            /*line5*/ null, /*line6*/ null, /*postCode*/ "SW1A 2AA", Address.UK);
-            final User user = new User("John", "Smith", /*middle name*/ null, /*title*/ null, /*email*/ null, /*phone*/ null);
-            final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ null, /*line4*/ null,
-            /*line5*/ null, /*line6*/ null, /*postCode*/ null, Address.UK);
-
-            //logoUrl is null because it is set in Zapp Core already
-            final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
-                    Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
-
-            final Uri.Builder uriBuilder = new Uri.Builder();
-            final Uri merchantCallbackUri = uriBuilder
-                    .scheme(getString(R.string.app_scheme))
-                    .authority("merchant.domain.com")
-                    .appendQueryParameter("param1", "value1")
-                    .build();
-
-            final PaymentRequestBuilder paymentRequestBuilder = new PaymentRequestBuilder();
-            paymentRequestBuilder
-                    .withRtpType(RTPType.IMMEDIATE)
-                    .withPaymentType(PaymentType.BILL_PAY)
-                    .withCheckoutType(CheckoutType.NORMAL)
-                    .withDeliveryType(DeliveryType.ADDRESS)
-                    .withAmount(amount)
-                    .withAddress(userAddress)
-                    .withUser(user)
-                    .withMerchant(merchant)
-                    .withBillDetails(billDetails)
-                    .withMerchantCallbackUrl(merchantCallbackUri.toString());
-
-            final PaymentRequest paymentRequest = paymentRequestBuilder.build();
-
-        } catch (Exception e) {
-            Log.e(TAG, "Failed to set up Bill Payment", e);
-        }
-```
-
 
 ####SMB Journey
 
+```java
+try {
+    final CurrencyAmount amount = new CurrencyAmount(1600l, CurrencyAmount.POUNDS);
 
+    final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ null, /*line4*/ null,
+    /*line5*/ null, /*line6*/ null, /*postCode*/ null, Address.UK);
+
+    //logoUrl is null because it is set in Zapp Core already
+    final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
+            Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
+
+    final PaymentRequestBuilder paymentRequestBuilder = new PaymentRequestBuilder();
+    paymentRequestBuilder
+            .withRtpType(RTPType.IMMEDIATE)
+            .withPaymentType(PaymentType.SMB)
+            .withCheckoutType(CheckoutType.NORMAL)
+            .withDeliveryType(DeliveryType.ADDRESS)
+            .withAmount(amount)
+            .withMerchant(merchant);
+
+    final PaymentRequest paymentRequest = paymentRequestBuilder.build();
+
+    } catch (ZappModelValidationException e) {
+        Log.e(TAG, "Failed to set up SMB Payment", e);
+    }
 ```
-#!java
-
-    try {
-            final CurrencyAmount amount = new CurrencyAmount(1600l, CurrencyAmount.POUNDS);
-
-            final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ null, /*line4*/ null,
-            /*line5*/ null, /*line6*/ null, /*postCode*/ null, Address.UK);
-
-            //logoUrl is null because it is set in Zapp Core already
-            final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
-                    Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
-
-            final PaymentRequestBuilder paymentRequestBuilder = new PaymentRequestBuilder();
-            paymentRequestBuilder
-                    .withRtpType(RTPType.IMMEDIATE)
-                    .withPaymentType(PaymentType.SMB)
-                    .withCheckoutType(CheckoutType.NORMAL)
-                    .withDeliveryType(DeliveryType.ADDRESS)
-                    .withAmount(amount)
-                    .withMerchant(merchant);
-
-            final PaymentRequest paymentRequest = paymentRequestBuilder.build();
-
-        } catch (ZappModelValidationException e) {
-            Log.e(TAG, "Failed to set up SMB Payment", e);
-        }
-```
-
 
 #####Deferred Payments
 ####PayPlus
 
-```
-#!java
+```java
+try {
+    final CurrencyAmount defrdRTPAgrmtAmount = new CurrencyAmount(1200l, CurrencyAmount.POUNDS); //£12
+    final CurrencyAmount defrdRTPMaxAgrdAmount = null; //N/A
 
-     try {
-            final CurrencyAmount defrdRTPAgrmtAmount = new CurrencyAmount(1200l, CurrencyAmount.POUNDS); //£12
-            final CurrencyAmount defrdRTPMaxAgrdAmount = null; //N/A
+    final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ "London", /*line4*/ null,
+    /*line5*/ null, /*line6*/ null, /* postCode */ "EC1 2EC", Address.UK);
 
-            final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ "London", /*line4*/ null,
-            /*line5*/ null, /*line6*/ null, /* postCode */ "EC1 2EC", Address.UK);
+    //logoUrl is null because it is set in Zapp Core already
+    final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
+            Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
 
-            //logoUrl is null because it is set in Zapp Core already
-            final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
-                    Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
+    final AmountDetail serviceAmountDetail = new AmountDetail(AmountType.FEES, "Service fee", "10.00", /* rate */ null); //£10 service
+    final AmountDetail vatAmountDetail = new AmountDetail(AmountType.VATX, "VAT", "20.00", "2.00"); //£2 VAT
+    final AmountDetail[] amountDetails = {serviceAmountDetail, vatAmountDetail};
 
-            final AmountDetail serviceAmountDetail = new AmountDetail(AmountType.FEES, "Service fee", "10.00", /* rate */ null); //£10 service
-            final AmountDetail vatAmountDetail = new AmountDetail(AmountType.VATX, "VAT", "20.00", "2.00"); //£2 VAT
-            final AmountDetail[] amountDetails = {serviceAmountDetail, vatAmountDetail};
+    final Uri.Builder uriBuilder = new Uri.Builder();
+    final Uri merchantCallbackUri = uriBuilder
+            .scheme(getString(R.string.app_scheme))
+            .authority("merchant.domain.com")
+            .appendQueryParameter("param1", "value1")
+            .build();
 
-            final Uri.Builder uriBuilder = new Uri.Builder();
-            final Uri merchantCallbackUri = uriBuilder
-                    .scheme(getString(R.string.app_scheme))
-                    .authority("merchant.domain.com")
-                    .appendQueryParameter("param1", "value1")
-                    .build();
+    final PaymentRequestBuilder paymentRequestBuilder = new PaymentRequestBuilder();
+    paymentRequestBuilder
+            .withRtpType(RTPType.DEFERRED)
+            .withPaymentType(PaymentType.INSTANT_PAYMENT)
+            .withCheckoutType(CheckoutType.QUICK)
+            .withDeliveryType(DeliveryType.ADDRESS)
+            .withMerchant(merchant)
+            .withMerchantCallbackUrl(merchantCallbackUri.toString())
+            .withAcrType(ACRType.FUNDS_CHECK) //do funds checking but no funds guarantee.
+            .withDefrdRTPAgrmtAmount(defrdRTPAgrmtAmount) //£12.00
+            .withDefrdRTPMaxAgrdAmount(defrdRTPMaxAgrdAmount) //N/A
+            .withDefrdAmountDetails(amountDetails);
 
-            final PaymentRequestBuilder paymentRequestBuilder = new PaymentRequestBuilder();
-            paymentRequestBuilder
-                    .withRtpType(RTPType.DEFERRED)
-                    .withPaymentType(PaymentType.INSTANT_PAYMENT)
-                    .withCheckoutType(CheckoutType.QUICK)
-                    .withDeliveryType(DeliveryType.ADDRESS)
-                    .withMerchant(merchant)
-                    .withMerchantCallbackUrl(merchantCallbackUri.toString())
-                    .withAcrType(ACRType.FUNDS_CHECK) //do funds checking but no funds guarantee.
-                    .withDefrdRTPAgrmtAmount(defrdRTPAgrmtAmount) //£12.00
-                    .withDefrdRTPMaxAgrdAmount(defrdRTPMaxAgrdAmount) //N/A
-                    .withDefrdAmountDetails(amountDetails);
+    final PaymentRequest paymentRequest = paymentRequestBuilder.build();
 
-            final PaymentRequest paymentRequest = paymentRequestBuilder.build();
-
-        } catch (Exception e) {
-            Log.e(TAG, "Failed to set up PayPlus deferred payment", e);
-        }
+    } catch (Exception e) {
+        Log.e(TAG, "Failed to set up PayPlus deferred payment", e);
+    }
 ```
 
 ####Standard Payment
 
+```java
+try {
+    final CurrencyAmount defrdRTPAgrmtAmount = new CurrencyAmount(1200l, CurrencyAmount.POUNDS); //£12
+    final CurrencyAmount defrdRTPMaxAgrdAmount = null; //N/A
 
-```
-#!java
+    final Address userAddress = new Address("125 Old Broad St", /*line2*/ null, /*line3*/ "London", /*line4*/ null, /*line5*/ null,
+    /*line6*/ null, /*postCode*/ "ECN 1AR", Address.UK);
 
-     try {
-            final CurrencyAmount defrdRTPAgrmtAmount = new CurrencyAmount(1200l, CurrencyAmount.POUNDS); //£12
-            final CurrencyAmount defrdRTPMaxAgrdAmount = null; //N/A
+    final User user = new User("John", "Smith", /*middle name*/ null, /*title*/ null, /*email*/ "consumer1@pbba.co.uk", 
+    /*phone*/ null);
 
-            final Address userAddress = new Address("125 Old Broad St", /*line2*/ null, /*line3*/ "London", /*line4*/ null, /*line5*/ null,
-            /*line6*/ null, /*postCode*/ "ECN 1AR", Address.UK);
+    final Address merchantStoreAddress = new Address("Zapp Super Store", "2 Puddle Dock", "London", /*line4*/ null, /*line5*/ null,
+    /*line6*/ null, /*postCode*/ "EC4V 3DB", Address.UK);
 
-            final User user = new User("John", "Smith", /*middle name*/ null, /*title*/ null, /*email*/ "consumer1@pbba.co.uk", 
-            /*phone*/ null);
+    final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ "London", /*line4*/ null,
+    /*line5*/ null, /*line6*/ null, /*postCode*/ "EC1 2EC", Address.UK);
 
-            final Address merchantStoreAddress = new Address("Zapp Super Store", "2 Puddle Dock", "London", /*line4*/ null, /*line5*/ null,
-            /*line6*/ null, /*postCode*/ "EC4V 3DB", Address.UK);
-
-            final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ "London", /*line4*/ null,
-            /*line5*/ null, /*line6*/ null, /*postCode*/ "EC1 2EC", Address.UK);
-
-            //logoUrl is null because it is set in Zapp Core already
-            final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
+    //logoUrl is null because it is set in Zapp Core already
+    final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
                     Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
 
-            final Uri.Builder uriBuilder = new Uri.Builder();
-            final Uri merchantCallbackUri = uriBuilder
-                    .scheme(getString(R.string.app_scheme))
-                    .authority("merchant.domain.com")
-                    .appendQueryParameter("param1", "value1")
-                    .build();
+    final Uri.Builder uriBuilder = new Uri.Builder();
+    final Uri merchantCallbackUri = uriBuilder
+            .scheme(getString(R.string.app_scheme))
+            .authority("merchant.domain.com")
+            .appendQueryParameter("param1", "value1")
+            .build();
 
-            final PaymentRequestBuilder paymentRequestBuilder = new PaymentRequestBuilder();
-            paymentRequestBuilder
-                    .withRtpType(RTPType.DEFERRED)
-                    .withPaymentType(PaymentType.INSTANT_PAYMENT)
-                    .withCheckoutType(CheckoutType.NORMAL)
-                    .withDeliveryType(DeliveryType.ADDRESS)
-                    .withAddress(userAddress)
-                    .withUser(user)
-                    .withMerchant(merchant)
-                    .withMerchantCallbackUrl(merchantCallbackUri.toString())
-                    .withAcrType(ACRType.FUNDS_CHECK) //do funds checking but no funds guarantee.
-                    .withDefrdRTPAgrmtAmount(defrdRTPAgrmtAmount) //£12.00
-                    .withDefrdRTPMaxAgrdAmount(defrdRTPMaxAgrdAmount); //N/A
+    final PaymentRequestBuilder paymentRequestBuilder = new PaymentRequestBuilder();
+    paymentRequestBuilder
+            .withRtpType(RTPType.DEFERRED)
+            .withPaymentType(PaymentType.INSTANT_PAYMENT)
+            .withCheckoutType(CheckoutType.NORMAL)
+            .withDeliveryType(DeliveryType.ADDRESS)
+            .withAddress(userAddress)
+            .withUser(user)
+            .withMerchant(merchant)
+            .withMerchantCallbackUrl(merchantCallbackUri.toString())
+            .withAcrType(ACRType.FUNDS_CHECK) //do funds checking but no funds guarantee.
+            .withDefrdRTPAgrmtAmount(defrdRTPAgrmtAmount) //£12.00
+            .withDefrdRTPMaxAgrdAmount(defrdRTPMaxAgrdAmount); //N/A
 
-            final PaymentRequest paymentRequest = paymentRequestBuilder.build();
+    final PaymentRequest paymentRequest = paymentRequestBuilder.build();
 
-        } catch (ZappModelValidationException e) {
-            Log.e(TAG, "Failed to set up Standard deferred payment", e);
-        }
+    } catch (ZappModelValidationException e) {
+        Log.e(TAG, "Failed to set up Standard deferred payment", e);
+    }
 ```
 
 ###Initialize Zapp Merchant Service
 
 Initialize the delegates:
 
-```sb
+```java
     final IMerchantNetworkServiceDelegate serviceDelegate = new MerchantNetworkServiceDelegateImpl(context);
     final ZappMerchantUIDelegate uiDelegate = new MerchantUIDelegateImpl(context);
 ```
 Pass the delegates to the Zapp Merchant Service
 
-```sb
+```java
     final IMerchantService merchantService = ZappMerchantServiceFactory.createMerchantService(serviceDelegate, uiDelegate);
 ```
 Implement the **IMerchantNetworkServiceDelegate** and **ZappMerchantUIDelegate** in order to communicate with the Merchant in-house system to enable the user to see the payment status in the Merchant application.
@@ -344,7 +330,7 @@ Implement the **IMerchantNetworkServiceDelegate** and **ZappMerchantUIDelegate**
 The Merchant application should implement **IMerchantNetworkServiceDelegate** and extend the **ZappMerchantUIDelegate** which are used by the Zapp Merchant Library in order to communicate with the user and the backend.
 
 ####IMerchantNetworkServiceDelegate:
-```sh
+```java
 /**
  * Initiates a payment using the provided {@link com.zapp.core.Transaction} details
  * which describes all the details about a payment, like {@link com.zapp.core.PaymentType PaymentType}
@@ -414,7 +400,7 @@ void getSettlementStatus(String merchantId, String settlementRetrievalId, OnResp
 
 
 ####ZappMerchantUIDelegate:
-```sh
+```java
 /**
  * Shows a payment confirmation screen to the user with the status whether it has been successful or rejected.
  * Also it allows the merchant app to display the payment details to the user.
