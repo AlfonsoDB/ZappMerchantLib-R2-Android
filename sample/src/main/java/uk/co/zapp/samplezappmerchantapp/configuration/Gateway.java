@@ -25,13 +25,18 @@ public class Gateway {
     private String domain;
 
     /**
+     * The merchants identifier.
+     */
+    private String clientId;
+
+    /**
      * Create new instance.
      *
      * @param name    The name of the gateway.
      * @param domain  The domain of the gateway.
      * @param version The version of the gateway.
      */
-    public Gateway(final String name, final String domain, final String version) {
+    public Gateway(final String name, final String domain, final String version, final String clientId) {
         if (TextUtils.isEmpty(name)) {
             throw new IllegalArgumentException("name is empty");
         }
@@ -41,6 +46,7 @@ public class Gateway {
         }
         this.domain = domain;
         this.version = version;
+        this.clientId = clientId;
     }
 
     public String getName() {
@@ -65,6 +71,14 @@ public class Gateway {
 
     public void setDomain(final String domain) {
         this.domain = domain;
+    }
+
+    public String getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(final String clientId) {
+        this.clientId = clientId;
     }
 
     /**

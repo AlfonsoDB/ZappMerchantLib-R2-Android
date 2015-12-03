@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 import uk.co.zapp.samplezappmerchantapp.FeatureDemoActivity;
 import uk.co.zapp.samplezappmerchantapp.IListItemClickListener;
 import uk.co.zapp.samplezappmerchantapp.R;
+import uk.co.zapp.samplezappmerchantapp.configuration.AppConfigurationUtils;
 import uk.co.zapp.samplezappmerchantapp.configuration.Features;
 import uk.co.zapp.samplezappmerchantapp.ui.adapter.FeatureDemoAdapter;
 
@@ -43,7 +44,7 @@ public abstract class AbstractPaymentFragment extends Fragment implements IListI
     /**
      * Merchant identifier.
      */
-    protected static final String MERCHANT_ID = "MerchantDemo2";
+    protected String mMerchantId;
 
     /**
      * Merchant name (matching merchant identifier).
@@ -85,6 +86,7 @@ public abstract class AbstractPaymentFragment extends Fragment implements IListI
     public void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mFeatures = Features.getInstance(mContext);
+        mMerchantId = AppConfigurationUtils.getInstance(getActivity()).getClientId();
         setupFeatureDemos();
     }
 

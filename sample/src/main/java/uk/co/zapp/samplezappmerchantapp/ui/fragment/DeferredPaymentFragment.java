@@ -53,13 +53,14 @@ public class DeferredPaymentFragment extends AbstractPaymentFragment {
         try {
             final String featureTitle = "PayPlus Payment";
             final String featureDescription = "Select 'Pay by Bank app' to begin a PayPlus deferred payment.";
+
             final CurrencyAmount defrdRTPAgrmtAmount = new CurrencyAmount(1200l, CurrencyAmount.POUNDS); //£12
             final CurrencyAmount defrdRTPMaxAgrdAmount = null; //N/A
 
             final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ "London", /*line4*/ null, /*line5*/ null, /*line6*/ null,
                 /* postCode */ "EC1 2EC", Address.UK);
             //logoUrl is null because it is set in Zapp Core already
-            final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
+            final Merchant merchant = new Merchant(mMerchantId, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
                     Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
 
             final AmountDetail serviceAmountDetail = new AmountDetail(AmountType.FEES, "Service fee", "10.00", /* rate */ null); //£10 service
@@ -103,6 +104,7 @@ public class DeferredPaymentFragment extends AbstractPaymentFragment {
         try {
             final String featureTitle = "Standard Payment";
             final String featureDescription = "Select 'Pay by Bank app' to begin a Standard deferred payment with delivery to address.";
+
             final CurrencyAmount defrdRTPAgrmtAmount = new CurrencyAmount(1200l, CurrencyAmount.POUNDS); //£12
             final CurrencyAmount defrdRTPMaxAgrdAmount = null; //N/A
 
@@ -116,7 +118,7 @@ public class DeferredPaymentFragment extends AbstractPaymentFragment {
             final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ "London", /*line4*/ null, /*line5*/ null, /*line6*/ null,
             /*postCode*/ "EC1 2EC", Address.UK);
             //logoUrl is null because it is set in Zapp Core already
-            final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
+            final Merchant merchant = new Merchant(mMerchantId, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
                     Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
 
             final Uri.Builder uriBuilder = new Uri.Builder();
