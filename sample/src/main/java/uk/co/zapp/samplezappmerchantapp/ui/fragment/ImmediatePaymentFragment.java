@@ -71,7 +71,7 @@ public class ImmediatePaymentFragment extends AbstractPaymentFragment implements
             final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ null, /*line4*/ null, /*line5*/ null, /*line6*/ null,
                 /* postCode */ null, Address.UK);
             //logoUrl is null because it is set in Zapp Core already
-            final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
+            final Merchant merchant = new Merchant(mMerchantId, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
                     Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
 
             final Uri.Builder uriBuilder = new Uri.Builder();
@@ -121,7 +121,7 @@ public class ImmediatePaymentFragment extends AbstractPaymentFragment implements
             final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ null, /*line4*/ null, /*line5*/ null, /*line6*/ null,
             /*postCode*/ null, Address.UK);
             //logoUrl is null because it is set in Zapp Core already
-            final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
+            final Merchant merchant = new Merchant(mMerchantId, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
                     Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
 
             final Uri.Builder uriBuilder = new Uri.Builder();
@@ -159,14 +159,13 @@ public class ImmediatePaymentFragment extends AbstractPaymentFragment implements
 
     private void setupStandardPaymentFeatureDemo(final String featureTitle, final String featureDescription, final DeliveryType deliveryType) {
         try {
-
             final CurrencyAmount amount = new CurrencyAmount(1200l, CurrencyAmount.POUNDS);
 
             final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ null, /*line4*/ null, /*line5*/ null,
              /*line6*/ null, /*postCode*/ null, Address.UK);
 
             //logoUrl is null because it is set in Zapp Core already
-            final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
+            final Merchant merchant = new Merchant(mMerchantId, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
                     Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
 
             final Uri.Builder uriBuilder = new Uri.Builder();
@@ -231,7 +230,7 @@ public class ImmediatePaymentFragment extends AbstractPaymentFragment implements
             final Address merchantAddress = new Address("200 Queen Victoria Street", /*line2*/ null, /*line3*/ null, /*line4*/ null, /*line5*/ null, /*line6*/ null,
             /*postCode*/ null, Address.UK);
             //logoUrl is null because it is set in Zapp Core already
-            final Merchant merchant = new Merchant(MERCHANT_ID, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
+            final Merchant merchant = new Merchant(mMerchantId, MERCHANT_NAME, "merchantdemo@zapp.co.uk", /*phone*/ null, merchantAddress,
                     Uri.parse("https://play.google.com/store/apps/details?id=merchant.application.package").toString(), /* logoUrl */ null);
 
             final PaymentRequestBuilder paymentRequestBuilder = new PaymentRequestBuilder();

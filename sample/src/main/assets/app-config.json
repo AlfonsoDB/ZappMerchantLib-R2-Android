@@ -4,7 +4,26 @@
       {
         "name": "Dev",
         "domain": "54.194.189.234:14721/distributor-gateway-",
-        "version": "2.3.0"
+        "version": "2.3.0",
+        "clientid": "MerchantDemo2"
+      },
+      {
+        "name": "Demo",
+        "domain": "54.194.189.234:14921/distributor-gateway-",
+        "version": "2.3.0-demo",
+        "clientid": "MerchantDemo2"
+      },
+      {
+        "name": "CRE",
+        "domain": "54.194.189.234:14921/distributor-gateway-",
+        "version": "2.3.0-cre",
+        "clientid": "MerchantDemo2CRE"
+      },
+      {
+        "name": "PIT",
+        "domain": "54.194.189.234:14921/distributor-gateway-",
+        "version": "2.3.0-pit",
+        "clientid": "MerchantDemo2"
       }
     ]
   },

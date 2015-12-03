@@ -33,6 +33,7 @@ import uk.co.zapp.samplezappmerchantapp.util.AutoCloseUtils;
  *                  "name" : "Demo",
  *                  "domain" : "demo.retailmine.co.uk/cfi-gateway",
  *                  "version" : "2.0"
+ *                  "clientid" : "MerchantDemo2"
  *              },
  *              ...
  *           ]
@@ -152,7 +153,11 @@ public class AppConfigurationUtils {
                 if (TextUtils.isEmpty(name)) {
                     throw new IllegalArgumentException(String.format(REQUIRED_KEY_IS_MISSING_PATTERN, "gateway.env[].version"));
                 }
-                final Gateway gateway = new Gateway(name, domain, version);
+                final String clientId = jsonGatewayEnvConfigItem.optString("clientid");
+                if (TextUtils.isEmpty(clientId)) {
+                    throw new IllegalArgumentException(String.format(REQUIRED_KEY_IS_MISSING_PATTERN, "gateway.env[].clientid"));
+                }
+                final Gateway gateway = new Gateway(name, domain, version, clientId);
                 mGateways.add(gateway);
             }
         } catch (JSONException je) {
@@ -180,7 +185,7 @@ public class AppConfigurationUtils {
     /**
      * Get the application scheme.
      *
-     * @return The application scheme {@link java.lang.String}
+     * @return The application scheme {@link String}
      */
     public String getAppScheme() {
         return mAppScheme;
@@ -200,6 +205,15 @@ public class AppConfigurationUtils {
 
         //mGateways are always contains at least one item if the instance is initialised.
         return mGateways.get(mActiveGatewayIndex);
+    }
+
+    /**
+     * Get the clients id.
+     *
+     * @return The client id.
+     */
+    public String getClientId() {
+        return getActiveGateway().getClientId();
     }
 
     /**

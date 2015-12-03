@@ -11,7 +11,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -98,9 +97,18 @@ public class Features {
     }
 
     /**
-     * Get the list of features filtered by RTP type.
-     * @param rtpType The payment request type.
+     * Get the list of all features.
      *
+     * @return The list of all features
+     */
+    public List<Feature> getFeatures() {
+        return mFeatures;
+    }
+
+    /**
+     * Get the list of features filtered by RTP type.
+     *
+     * @param rtpType The payment request type.
      * @return The unmodifiable list of features.
      */
     public List<Feature> getFeaturesByRtpType(final RTPType rtpType) {
@@ -115,6 +123,7 @@ public class Features {
 
     /**
      * Get the feature by its unique id.
+     *
      * @param id The id of the feature.
      * @return The feature by its id or null if no feature found by given id.
      */
@@ -143,6 +152,7 @@ public class Features {
 
     /**
      * Update an existing feature on the list. It keeps the feature position within the list.
+     *
      * @param feature The updated feature to set to the features list.
      */
     public void updateFeature(final Feature feature) {

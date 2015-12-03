@@ -25,6 +25,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
+import java.util.List;
+
+import uk.co.zapp.samplezappmerchantapp.configuration.AppConfigurationUtils;
+import uk.co.zapp.samplezappmerchantapp.configuration.Feature;
+import uk.co.zapp.samplezappmerchantapp.configuration.Features;
 import uk.co.zapp.samplezappmerchantapp.network.delegate.MerchantNetworkServiceDelegateImpl;
 import uk.co.zapp.samplezappmerchantapp.ui.fragment.DeferredPaymentFragment;
 import uk.co.zapp.samplezappmerchantapp.ui.fragment.dialog.GatewayPickerDialogFragment;
@@ -202,6 +207,13 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
                 @Override
                 public void onGatewayPicked(@NonNull final String gatewayInfo) {
                     Snackbar.make(mRootLayout, getString(R.string.settings_gateway_updated, gatewayInfo), Snackbar.LENGTH_LONG).show();
+
+                    final List<Feature> features = Features.getInstance(getApplicationContext()).getFeatures();
+                    final String merchantId = AppConfigurationUtils.getInstance(getApplicationContext()).getClientId();
+
+                    for (final Feature feature : features) {
+                        feature.getPaymentRequest().getMerchant().setIdentifier(merchantId);
+                    }
                 }
             });
             dialogFragment.show(getSupportFragmentManager(), GatewayPickerDialogFragment.TAG);
