@@ -593,7 +593,7 @@ public class TestHelpers {
     }
 
     @Given("^I have the following amount detail:$")
-    public void i_have_the_following_amount_detail(List<Map<String, String>> values) throws Throwable{
+    public void i_have_the_following_amount_detail(List<Map<String, String>> values) throws Throwable {
         for (Map<String, String> map : values) {
             final AmountDetail amountDetail = Defaults.getDefaultAmountDetails();
             for (Map.Entry<String, String> entry : map.entrySet()) {

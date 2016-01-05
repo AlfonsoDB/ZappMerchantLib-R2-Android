@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import uk.co.zapp.samplezappmerchantapp.BuildConfig;
 import uk.co.zapp.samplezappmerchantapp.R;
 import uk.co.zapp.samplezappmerchantapp.util.AutoCloseUtils;
 
@@ -159,7 +160,9 @@ public class AppConfigurationUtils {
                 }
                 final Gateway gateway = new Gateway(name, domain, version, clientId);
                 mGateways.add(gateway);
+
             }
+            setDefaultGateway();
         } catch (JSONException je) {
             throw new IllegalArgumentException("Cannot parse JSON configuration data from assets", je);
         } catch (IOException ioe) {
@@ -217,7 +220,7 @@ public class AppConfigurationUtils {
     }
 
     /**
-     * Get an unmodifable list of available gateways.
+     * Get an unmodifiable list of available gateways.
      *
      * @return The list of available gateways.
      */
@@ -241,5 +244,17 @@ public class AppConfigurationUtils {
                 .edit()
                 .putInt(KEY_GATEWAY_INDEX, mActiveGatewayIndex)
                 .apply();
+    }
+
+    private void setDefaultGateway() {
+        final boolean isGatewayNotSet = mContext.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE).getInt(KEY_GATEWAY_INDEX, -1) == -1;
+        if (isGatewayNotSet) {
+            for (final Gateway gw : mGateways) {
+                if (!BuildConfig.DEBUG && "Demo".equalsIgnoreCase(gw.getName())) {
+                    setActiveGateway(gw);
+                    break;
+                }
+            }
+        }
     }
 }

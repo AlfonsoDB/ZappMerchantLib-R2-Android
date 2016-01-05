@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.widget.EditText;
@@ -16,7 +17,7 @@ public class AmountEditText extends EditText {
     /**
      * The max length value.
      */
-    private static final int MAX_LENGTH = 18;
+    public static final int MAX_LENGTH = 18;
 
     /**
      * The unicode value of pound sign.
@@ -165,6 +166,39 @@ public class AmountEditText extends EditText {
      * Sets the view's filters.
      */
     private void setFilters() {
-        setFilters(new InputFilter[]{new InputFilter.LengthFilter(MAX_LENGTH)});
+        setFilters(new InputFilter[]{new InputFilter.LengthFilter(MAX_LENGTH), new AmountInputFilter()});
+    }
+
+    /**
+     * This filter will constrain edits not to accept more than two digits after the floating point character.
+     */
+    public static class AmountInputFilter implements InputFilter {
+
+        private static final char DOT = '.';
+
+        @Override
+        public CharSequence filter(final CharSequence source, final int start, final int end, final Spanned dest, final int dstart, final int dend) {
+            int dotPos = 0;
+            int charsAfterDot = 0;
+            boolean hasDot = false;
+
+            for (int i = 0; i < dest.length(); i++) {
+                final char c = dest.charAt(i);
+                if (c == DOT) {
+                    dotPos = i;
+                    hasDot = true;
+                } else if (hasDot) {
+                    if (dend < dotPos) {
+                        return null;
+                    }
+                    charsAfterDot++;
+                    if (charsAfterDot == 2 && dstart > dotPos) {
+                        return "";
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

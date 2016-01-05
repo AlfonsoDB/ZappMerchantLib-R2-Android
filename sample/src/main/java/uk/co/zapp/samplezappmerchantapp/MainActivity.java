@@ -31,11 +31,11 @@ import uk.co.zapp.samplezappmerchantapp.configuration.AppConfigurationUtils;
 import uk.co.zapp.samplezappmerchantapp.configuration.Feature;
 import uk.co.zapp.samplezappmerchantapp.configuration.Features;
 import uk.co.zapp.samplezappmerchantapp.network.delegate.MerchantNetworkServiceDelegateImpl;
-import uk.co.zapp.samplezappmerchantapp.ui.fragment.DeferredPaymentFragment;
-import uk.co.zapp.samplezappmerchantapp.ui.fragment.dialog.GatewayPickerDialogFragment;
-import uk.co.zapp.samplezappmerchantapp.ui.fragment.ImmediatePaymentFragment;
 import uk.co.zapp.samplezappmerchantapp.ui.MerchantUIDelegateImpl;
 import uk.co.zapp.samplezappmerchantapp.ui.adapter.PaymentViewPagerAdapter;
+import uk.co.zapp.samplezappmerchantapp.ui.fragment.DeferredPaymentFragment;
+import uk.co.zapp.samplezappmerchantapp.ui.fragment.ImmediatePaymentFragment;
+import uk.co.zapp.samplezappmerchantapp.ui.fragment.dialog.GatewayPickerDialogFragment;
 import uk.co.zapp.samplezappmerchantapp.util.UserPrefs;
 
 public class MainActivity extends AppCompatActivity implements ShakeDetector.Listener {

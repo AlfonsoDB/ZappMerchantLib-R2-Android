@@ -1,5 +1,6 @@
 package uk.co.zapp.samplezappmerchantapp.ui.fragment;
 
+import com.zapp.core.Address;
 import com.zapp.core.CurrencyAmount;
 import com.zapp.core.DeliveryAddress;
 import com.zapp.core.DeliveryType;
@@ -142,12 +143,24 @@ public class PaymentConfirmedFragment extends BasePaymentFragment {
             case ADDRESS:
             case COLLECT_IN_STORE:
             case SERVICE:
-                if (deliveryAddress != null) {
-                    final User user = deliveryAddress.getAddressee();
+                if (paymentRequest.getRtpType() == RTPType.DEFERRED) {
+                    if (deliveryAddress != null) {
+                        final User user = deliveryAddress.getAddressee();
+                        if (user != null) {
+                            final String[] addressArray = {getCustomerName(user), user.getEmail(), user.getPhone(), deliveryAddress.getLine1(),
+                                    deliveryAddress.getLine2(), deliveryAddress.getLine3(), deliveryAddress.getLine4(), deliveryAddress.getLine5(),
+                                    deliveryAddress.getLine6(), deliveryAddress.getPostCode(), deliveryAddress.getCountryCode()};
+                            displayAddresseeInfo(descriptionTextBuilder, addressArray);
+                        }
+                    }
+                } else {
+                    //TODO as PaymentAuth does not contain the SettlementStatus, it cannot be used for payment authorisation for immediate payments,
+                    //TODO retrieve the shipping address from PaymentRequest.
+                    final User user = paymentRequest.getUser();
+                    final Address address = paymentRequest.getAddress();
                     if (user != null) {
-                        final String[] addressArray = {getCustomerName(user), user.getEmail(), user.getPhone(), deliveryAddress.getLine1(),
-                                deliveryAddress.getLine2(), deliveryAddress.getLine3(), deliveryAddress.getLine4(), deliveryAddress.getLine5(),
-                                deliveryAddress.getLine6(), deliveryAddress.getPostCode(), deliveryAddress.getCountryCode()};
+                        final String[] addressArray = {getCustomerName(user), user.getEmail(), user.getPhone(), address.getLine1(), address.getLine2(),
+                                address.getLine3(), address.getLine4(), address.getLine5(), address.getLine6(), address.getPostCode(), address.getCountryCode()};
                         displayAddresseeInfo(descriptionTextBuilder, addressArray);
                     }
                 }

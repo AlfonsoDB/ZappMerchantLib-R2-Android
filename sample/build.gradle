@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 
-def versionNameStr = hasProperty('appVersionNameSuffix') ? '2.0.0-2.0.0.0-' + appVersionNameSuffix : (project.hasProperty('appVersionName') ? appVersionName : '2.0-poc')
+def versionNameStr = hasProperty('appVersionNameSuffix') ? '2.0.0-2.3.0.0-' + appVersionNameSuffix : (project.hasProperty('appVersionName') ? appVersionName : '2.0-poc')
 def versionCodeStr = project.hasProperty('appVersionCode') ? Integer.parseInt(appVersionCode) : 20
 
 def getKeyStoreFileValue() {
-    return project.hasProperty('keyStoreFile') ? keyStoreFile : '${System.properties["user.home"]}${File.separator}zapp-release-key.keystore'
+    return project.hasProperty('keyStoreFile') ? keyStoreFile : "${System.properties["user.home"]}${File.separator}zapp-release-key.keystore"
 }
 
 def getKeyStorePasswordValue() {

@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.text.InputFilter;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -30,6 +31,7 @@ import android.widget.EditText;
 import uk.co.zapp.samplezappmerchantapp.R;
 import uk.co.zapp.samplezappmerchantapp.configuration.Feature;
 import uk.co.zapp.samplezappmerchantapp.configuration.Features;
+import uk.co.zapp.samplezappmerchantapp.ui.AmountEditText;
 import uk.co.zapp.samplezappmerchantapp.util.Converter;
 
 /**
@@ -104,6 +106,7 @@ public class FeatureEditImmediateFragment extends Fragment {
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_feature_edit_immediate, container, false);
         mAmountInput = (EditText) view.findViewById(R.id.amount);
+        mAmountInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(AmountEditText.MAX_LENGTH), new AmountEditText.AmountInputFilter()});
 
         final Long amount;
         if (mPaymentRequest.getRtpType() == RTPType.IMMEDIATE) {
@@ -330,6 +333,11 @@ public class FeatureEditImmediateFragment extends Fragment {
     public boolean onOptionsItemSelected(final MenuItem item) {
         final int id = item.getItemId();
 
+        if (id == android.R.id.home) {
+            hideSoftKeyboard();
+            getFragmentManager().popBackStack();
+            return true;
+        }
         if (id == R.id.action_save) {
             updateFeature();
             return true;

@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.drawable.Animatable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 /**
@@ -52,6 +53,16 @@ public class SMBScreenActivity extends AbstractActivity implements IPBBAPopupCal
             final Animatable animation = (Animatable) progressImageView.getDrawable();
             animation.start();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        final int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
