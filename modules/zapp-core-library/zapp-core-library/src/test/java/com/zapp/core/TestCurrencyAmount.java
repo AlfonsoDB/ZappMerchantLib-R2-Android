@@ -68,6 +68,13 @@ public class TestCurrencyAmount {
         assertEquals(displayString, arg1);
     }
 
+    @And("^the Display String of the Currency Amount with pence formatting is \"([^\"]*)\"$")
+    public void the_Display_String_of_the_Currency_Amount_with_pence_formatting_is(String arg1) throws Throwable {
+        assertNotNull(currencyAmount);
+        final String displayString = currencyAmount.toStringWithPence();
+        assertEquals(displayString, arg1);
+    }
+
     @Given("^the current Currency Amount is \"([^\"]*)\"$")
     public void the_current_Currency_Amount_is(String arg1) throws Throwable {
         try {

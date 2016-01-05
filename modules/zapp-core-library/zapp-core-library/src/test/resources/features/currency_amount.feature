@@ -1,25 +1,46 @@
 Feature: Test Currency Amount logic.
 
+  Scenario: toStringWithPence.1.GBP
+    Given the Value is "1"
+    And the Currency Code is "GBP"
+    When I try to create the Currency Amount
+    Then the Currency Amount is created successfully
+    And the Display String of the Currency Amount with pence formatting is "1p"
+
   Scenario: toString.1.GBP
     Given the Value is "1"
     And the Currency Code is "GBP"
     When I try to create the Currency Amount
     Then the Currency Amount is created successfully
-    And the Display String of the Currency Amount is "1p"
+    And the Display String of the Currency Amount is "£0.01"
+
+  Scenario: toStringWithPence.10.GBP
+    Given the Value is "10"
+    And the Currency Code is "GBP"
+    When I try to create the Currency Amount
+    Then the Currency Amount is created successfully
+    And the Display String of the Currency Amount with pence formatting is "10p"
 
   Scenario: toString.10.GBP
     Given the Value is "10"
     And the Currency Code is "GBP"
     When I try to create the Currency Amount
     Then the Currency Amount is created successfully
-    And the Display String of the Currency Amount is "10p"
+    And the Display String of the Currency Amount is "£0.10"
+
+  Scenario: toStringWithPence.99.GBP
+    Given the Value is "99"
+    And the Currency Code is "GBP"
+    When I try to create the Currency Amount
+    Then the Currency Amount is created successfully
+    And the Display String of the Currency Amount with pence formatting is "99p"
 
   Scenario: toString.99.GBP
     Given the Value is "99"
     And the Currency Code is "GBP"
     When I try to create the Currency Amount
     Then the Currency Amount is created successfully
-    And the Display String of the Currency Amount is "99p"
+    And the Display String of the Currency Amount is "£0.99"
 
   Scenario: toString.100.GBP
     Given the Value is "100"
@@ -63,12 +84,19 @@ Feature: Test Currency Amount logic.
     Then the Currency Amount is created successfully
     And the Display String of the Currency Amount is "-£1.00"
 
+  Scenario: toStringWithPence -1 GBP
+    Given the Value is "-1"
+    And the Currency Code is "GBP"
+    When I try to create the Currency Amount
+    Then the Currency Amount is created successfully
+    And the Display String of the Currency Amount with pence formatting is "-1p"
+
   Scenario: toString -1 GBP
     Given the Value is "-1"
     And the Currency Code is "GBP"
     When I try to create the Currency Amount
     Then the Currency Amount is created successfully
-    And the Display String of the Currency Amount is "-1p"
+    And the Display String of the Currency Amount is "-£0.01"
 
   Scenario: toString null
     Given the Value is "1"
@@ -119,11 +147,17 @@ Feature: Test Currency Amount logic.
     Then the second currency amount is added successfully
     And the Display String of the Currency Amount is "£3.33"
 
+  Scenario: add -1.03 GBP to 1.03 GBP using pence formatting
+    Given the current Currency Amount is "1.03 GBP"
+    When I try to add a second currency amount "-1.03 GBP" to the current Currency Amount
+    Then the second currency amount is added successfully
+    And the Display String of the Currency Amount with pence formatting is "0p"
+
   Scenario: add -1.03 GBP to 1.03 GBP
     Given the current Currency Amount is "1.03 GBP"
     When I try to add a second currency amount "-1.03 GBP" to the current Currency Amount
     Then the second currency amount is added successfully
-    And the Display String of the Currency Amount is "0p"
+    And the Display String of the Currency Amount is "£0.00"
 
   #
   # subtract
@@ -172,11 +206,17 @@ Feature: Test Currency Amount logic.
     When I try to multiply the currency amount by quantity ""
     Then the currency amount multiplication is failed
 
+  Scenario: multiply 0.73 GBP by 0 using pence formatting
+    Given the current Currency Amount is "0.73 GBP"
+    When I try to multiply the currency amount by quantity "0"
+    Then the currency amount is multiplied successfully
+    And the Display String of the Currency Amount with pence formatting is "0p"
+
   Scenario: multiply 0.73 GBP by 0
     Given the current Currency Amount is "0.73 GBP"
     When I try to multiply the currency amount by quantity "0"
     Then the currency amount is multiplied successfully
-    And the Display String of the Currency Amount is "0p"
+    And the Display String of the Currency Amount is "£0.00"
 
   Scenario: multiply 1.29 GBP by -1
     Given the current Currency Amount is "1.29 GBP"

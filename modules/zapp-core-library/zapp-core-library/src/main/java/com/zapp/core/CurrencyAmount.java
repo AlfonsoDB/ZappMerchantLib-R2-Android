@@ -90,6 +90,7 @@ public class CurrencyAmount implements IValidatable {
 
     /**
      * Multiply the current currency amount with the given quantity. (Called currencyAmountByMultiplyingByQuantity on iOS)
+     *
      * @param quantity The quantity to multiply with.
      * @return the result of currency amount after multiplication.
      */
@@ -108,23 +109,41 @@ public class CurrencyAmount implements IValidatable {
      */
     @Override
     public String toString() {
+        return formatString(CurrencyStringFormat.DEFAULT);
+    }
+
+    /**
+     * Display the amount as string that contains pence. (Called displayStringWithPence on iOS)
+     *
+     * @return The {@link String} representation of the amount.
+     */
+    public String toStringWithPence() {
+        return formatString(CurrencyStringFormat.WITH_PENCE);
+    }
+
+    /**
+     * Format the string to display amount.
+     *
+     * @param currencyStringFormat The currency string format.
+     * @return The {@link String} representation of the amount.
+     */
+    private String formatString(final CurrencyStringFormat currencyStringFormat) {
         if (value == null) {
             return null;
         }
-        final String displayString;
         if (POUNDS.equals(currencyCode)) {
             final String sign = value >= 0 ? "" : "-";
             final long poundsValue = Math.abs(value / 100);
             final long penceValue = Math.abs(value % 100);
-            if (poundsValue != 0) {
-                displayString = String.format("%s\u00a3%d.%02d", sign, poundsValue, penceValue);
+
+            if (currencyStringFormat == CurrencyStringFormat.WITH_PENCE && poundsValue == 0) {
+                return String.format("%s%dp", sign, penceValue);
             } else {
-                displayString = String.format("%s%dp", sign, penceValue);
+                return String.format("%s\u00a3%d.%02d", sign, poundsValue, penceValue);
             }
         } else {
             throw new IllegalArgumentException("currencyCode not supported");
         }
-        return displayString;
     }
 
     @Override

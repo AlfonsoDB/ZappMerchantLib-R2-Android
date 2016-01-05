@@ -1,6 +1,6 @@
 package uk.co.zapp.samplezappmerchantapp.ui.fragment;
 
-import com.zapp.core.DeliveryAddress;
+import com.zapp.core.Address;
 import com.zapp.core.DeliveryType;
 import com.zapp.core.PaymentAuth;
 import com.zapp.core.PaymentRequest;
@@ -121,15 +121,17 @@ public class PaymentDetailsFragment extends BasePaymentFragment {
      * @param paymentAuth            The payment authorisation.
      */
     private void displayDeliveryAddress(final StringBuilder descriptionTextBuilder, final DeliveryType deliveryType, final PaymentAuth paymentAuth) {
-        final DeliveryAddress deliveryAddress = paymentAuth == null ? null : paymentAuth.getDeliveryAddress();
+        //TODO as PaymentAuth does not contain the SettlementStatus, it cannot be used for payment authorisation for immediate payments,
+        //TODO retrieve the shipping address from PaymentRequest.
+        final User user = paymentAuth != null ? paymentAuth.getUser() : mTransaction.getPaymentRequest().getUser();
+        final Address deliveryAddress = paymentAuth != null ? paymentAuth.getDeliveryAddress() : mTransaction.getPaymentRequest().getAddress();
         switch (deliveryType) {
             case ADDRESS:
             case COLLECT_IN_STORE:
             case SERVICE:
-                displayPhysicalDeliveryAddress(descriptionTextBuilder, deliveryAddress);
+                displayPhysicalDeliveryAddress(descriptionTextBuilder, deliveryAddress, user);
                 break;
             case DIGITAL:
-                final User user = paymentAuth != null ? paymentAuth.getUser() : mTransaction.getPaymentRequest().getUser();
                 displayDigitalDeliveryAddress(descriptionTextBuilder, user);
                 break;
             case FACE_2_FACE:
@@ -147,22 +149,20 @@ public class PaymentDetailsFragment extends BasePaymentFragment {
      * Fills payment details view with delivery physical address information.
      *
      * @param descriptionTextBuilder The string builder that contains order details information.
-     * @param deliveryAddress        The payment delivery address.
+     * @param deliveryAddress                The delivery address.
+     * @param user                   The consumer.
      */
-    private void displayPhysicalDeliveryAddress(final StringBuilder descriptionTextBuilder, final DeliveryAddress deliveryAddress) {
+    private void displayPhysicalDeliveryAddress(final StringBuilder descriptionTextBuilder, final Address deliveryAddress, final User user) {
+        if (user != null) {
+            descriptionTextBuilder.append(getString(R.string.transaction_detail_delivery_address, user.getFirstName(), user.getLastName(), user.getEmail(),
+                    user.getPhone()));
+        } else {
+            descriptionTextBuilder.append(getString(R.string.transaction_detail_invalid_delivery_address));
+        }
+
         if (deliveryAddress != null) {
-            final User user = deliveryAddress.getAddressee();
-
-            if (user != null) {
-                descriptionTextBuilder.append(getString(R.string.transaction_detail_delivery_address, user.getFirstName(), user.getLastName(), user.getEmail(),
-                        user.getPhone()));
-            } else {
-                descriptionTextBuilder.append(getString(R.string.transaction_detail_invalid_delivery_address));
-            }
-
-            descriptionTextBuilder.append(getString(R.string.transaction_detail_digital_address, deliveryAddress.getLine1(), deliveryAddress.getLine2(),
-                    deliveryAddress.getLine3(), deliveryAddress.getLine4(), deliveryAddress.getLine5(), deliveryAddress.getLine6(), deliveryAddress.getPostCode(),
-                    deliveryAddress.getCountryCode()));
+            descriptionTextBuilder.append(getString(R.string.transaction_detail_digital_address, deliveryAddress.getLine1(), deliveryAddress.getLine2(), deliveryAddress.getLine3(),
+                    deliveryAddress.getLine4(), deliveryAddress.getLine5(), deliveryAddress.getLine6(), deliveryAddress.getPostCode(), deliveryAddress.getCountryCode()));
         } else {
             descriptionTextBuilder.append(getString(R.string.transaction_details_invalid_physical_delivery_address));
         }

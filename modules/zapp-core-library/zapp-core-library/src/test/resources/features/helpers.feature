@@ -7,7 +7,7 @@ Feature: Test the uncovered methods (setters/getters/toString ...).
     | Olivia Kensington   | 12345678   | 12-12-12    | valid      | valid             |
     | Olivia Kensington   | 12345678   | 12-12-12    | valid      | valid             |
     Then they are equal when I compare them
-    And the string representation should be "BankAccount[Olivia Kensington, 12345678, 12-12-12, 3p, 3p]"
+    And the string representation should be "BankAccount[Olivia Kensington, 12345678, 12-12-12, £0.03, £0.03]"
     And the hash codes should be equal
 
   Scenario: Two bank accounts are equal

@@ -15,5 +15,5 @@ public interface Const {
     /**
      * Web link to 'what is Pay by Bank app' web page.
      */
-    String WHAT_IS_PAY_BY_BANK_APP_LINK = "http://www.zapp.co.uk/paybybankapp/tellmemore";
+    String WHAT_IS_PAY_BY_BANK_APP_LINK = "http://www.zapp.co.uk/";
 }

@@ -1,14 +1,13 @@
 package uk.co.zapp.samplezappmerchantapp;
 
 import com.zapp.core.PaymentType;
-import com.zapp.core.RTPType;
 import com.zapp.core.Transaction;
 import com.zapp.core.TransactionStatus;
 import com.zapp.library.merchant.model.SettlementStatus;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.view.MenuItem;
 
 import uk.co.zapp.samplezappmerchantapp.ui.fragment.PaymentConfirmedFragment;
 import uk.co.zapp.samplezappmerchantapp.ui.fragment.PaymentDeclinedFragment;
@@ -54,7 +53,8 @@ public class PaymentConfirmedActivity extends AbstractActivity {
             //if settlement status is set then we act on it, otherwise we act on transaction status
             final boolean isTransactionAuthorised = settlementStatus == SettlementStatus.AUTHORISED || transactionStatus == TransactionStatus.AUTHORIZED;
 
-            switchFragment(isTransactionAuthorised ? PaymentConfirmedFragment.newInstance(mTransaction, settlementStatus) : PaymentDeclinedFragment.newInstance(mTransaction, settlementStatus), /*isAddedToBackStack*/ false);
+            switchFragment(isTransactionAuthorised ? PaymentConfirmedFragment.newInstance(mTransaction, settlementStatus)
+                    : PaymentDeclinedFragment.newInstance(mTransaction, settlementStatus), /*isAddedToBackStack*/ false);
         } else {
             throw new IllegalArgumentException(KEY_TRANSACTION + " intent extra is required");
         }
@@ -78,6 +78,16 @@ public class PaymentConfirmedActivity extends AbstractActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        final int id = item.getItemId();
+        if (id == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
