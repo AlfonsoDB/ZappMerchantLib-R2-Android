@@ -361,7 +361,7 @@ void initiatePayment(PaymentRequest paymentRequest, OnResponseListener<Transacti
 /**
  * Checks a payment status using the provided {@link com.zapp.core.Transaction} details
  * which should contain, at least, a non-null {@link com.zapp.core.TransactionId transactionId}
- * containing an <code>aptrId</code> which uniquely identifies a {@link com.zapp.core.Transaction}.
+ * containing an <code>secureToken</code> which uniquely identifies a {@link com.zapp.core.Transaction}.
  * <br>
  * Implementers are completely responsible for handling network or DB calls. <br>
  * Implementation can execute blocking calls (network/DB calls) in current Thread or have an
@@ -371,7 +371,7 @@ void initiatePayment(PaymentRequest paymentRequest, OnResponseListener<Transacti
  * in case of success or failure.
  *
  * @param transaction        Payment details containing a non-null {@link com.zapp.core.TransactionId transactionId}
- *                           containing an <code>aptrID</code> which uniquely identifies a
+ *                           containing an <code>secureToken</code> which uniquely identifies a
  *                           pending {@link com.zapp.core.Transaction}.
  *                           <br>
  * @param onResponseListener {@link OnResponseListener OnResponseListener}
